@@ -1,12 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <link rel="icon" href="favicon.ico" type="image/x-icon">
-        <link rel="shortcut icon" href="favicon.ico">
-        <link rel="apple-touch-icon" href="favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyrox Proxies</title>
+    <title>Cyrox Proxies - Premium Proxy Generator</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
@@ -528,6 +525,118 @@
             margin-top: 5px;
         }
 
+        /* Subscription Plans Page */
+        .plans-container {
+            background: rgba(0, 20, 40, 0.9);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 
+                0 10px 40px rgba(0, 150, 255, 0.25),
+                inset 0 0 20px rgba(0, 150, 255, 0.1);
+            border: 1px solid rgba(0, 150, 255, 0.3);
+            margin-bottom: 50px;
+            backdrop-filter: blur(10px);
+        }
+
+        .plans-container h2 {
+            font-size: 32px;
+            margin-bottom: 40px;
+            color: #00ffff;
+            font-family: 'Orbitron', sans-serif;
+            text-align: center;
+            text-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+        }
+
+        .plans-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+
+        .plan-card {
+            background: rgba(0, 20, 40, 0.8);
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid rgba(0, 150, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 150, 255, 0.3);
+            border-color: rgba(0, 200, 255, 0.4);
+        }
+
+        .plan-card.popular {
+            border: 2px solid #00ffff;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
+        }
+
+        .plan-card.popular::before {
+            content: 'POPULAR';
+            position: absolute;
+            top: 15px;
+            right: -30px;
+            background: #00ffff;
+            color: #000814;
+            padding: 5px 35px;
+            font-size: 12px;
+            font-weight: 700;
+            transform: rotate(45deg);
+            letter-spacing: 1px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .plan-header {
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(0, 150, 255, 0.2);
+        }
+
+        .plan-name {
+            font-size: 24px;
+            color: #00ffff;
+            margin-bottom: 10px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .plan-price {
+            font-size: 42px;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 5px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .plan-period {
+            font-size: 14px;
+            color: #a0d2ff;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .plan-features {
+            list-style: none;
+            margin-bottom: 30px;
+        }
+
+        .plan-features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 150, 255, 0.1);
+            color: #a0d2ff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .plan-features li i {
+            color: #00ffff;
+        }
+
         /* Home Page */
         .hero {
             text-align: center;
@@ -882,6 +991,29 @@
             color: #a0d2ff;
         }
 
+        /* Subscription Days Counter */
+        .subscription-days {
+            background: rgba(0, 100, 255, 0.15);
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(0, 150, 255, 0.3);
+            text-align: center;
+        }
+
+        .subscription-days .days-count {
+            font-size: 28px;
+            color: #00ffff;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            margin-bottom: 5px;
+        }
+
+        .subscription-days .days-label {
+            font-size: 14px;
+            color: #a0d2ff;
+        }
+
         /* Footer - Only Discord */
         footer {
             text-align: center;
@@ -1000,6 +1132,10 @@
                 min-width: 150px;
                 padding: 15px 20px;
             }
+            
+            .plans-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         @media (max-width: 768px) {
@@ -1011,7 +1147,7 @@
                 padding: 30px;
             }
             
-            .generator-container, .profile-container {
+            .generator-container, .profile-container, .plans-container {
                 padding: 25px;
             }
             
@@ -1060,6 +1196,10 @@
                 padding: 15px 30px;
                 font-size: 16px;
             }
+            
+            .plan-price {
+                font-size: 32px;
+            }
         }
     </style>
 </head>
@@ -1082,22 +1222,22 @@
                 <div class="limit-card">
                     <div class="limit-plan">FREE PLAN</div>
                     <div class="limit-daily">100/day</div>
-                    <div class="limit-label">Proxies Limit</div>
+                    <div class="limit-label">$0/month</div>
                 </div>
                 <div class="limit-card">
                     <div class="limit-plan">BASIC PLAN</div>
                     <div class="limit-daily">500/day</div>
-                    <div class="limit-label">Proxies Limit</div>
+                    <div class="limit-label">$9.99/month</div>
                 </div>
                 <div class="limit-card">
                     <div class="limit-plan">BUSINESS PLAN</div>
                     <div class="limit-daily">1000/day</div>
-                    <div class="limit-label">Proxies Limit</div>
+                    <div class="limit-label">$29.99/month</div>
                 </div>
                 <div class="limit-card">
                     <div class="limit-plan">ENTERPRISE PLAN</div>
                     <div class="limit-daily">Unlimited</div>
-                    <div class="limit-label">Proxies Limit</div>
+                    <div class="limit-label">$79.99/month</div>
                 </div>
             </div>
             
@@ -1210,7 +1350,7 @@
                     <p>Welcome back, <span id="dashboard-username" style="color: #00ffff;">Agent</span>. Status: <span style="color: #00ff00;">ACTIVE</span></p>
                 </div>
                 <div class="user-plan">
-                    <div class="plan-name" id="user-plan">BASIC CLEARANCE</div>
+                    <div class="plan-name" id="user-plan">FREE CLEARANCE</div>
                     <div class="plan-status" id="plan-status">ACCESS GRANTED</div>
                 </div>
             </div>
@@ -1235,9 +1375,9 @@
                 </div>
                 
                 <div class="stat-card">
-                    <h3><i class="fas fa-clock"></i> OPERATIVE ACTIVE TIME</h3>
-                    <div class="stat-value" id="account-age">0</div>
-                    <div class="stat-label">Days in service</div>
+                    <h3><i class="fas fa-crown"></i> SUBSCRIPTION DAYS</h3>
+                    <div class="stat-value" id="subscription-days">0</div>
+                    <div class="stat-label">Current plan active time</div>
                 </div>
             </div>
             
@@ -1259,8 +1399,109 @@
                     </div>
                     <h3>UPGRADE CLEARANCE</h3>
                     <p style="margin-bottom: 25px; color: #a0d2ff;">Unlock higher proxy limits and premium features</p>
-                    <button class="btn" id="showUpgradeModal">
-                        <i class="fas fa-arrow-up"></i> UPGRADE PLAN
+                    <a href="#" class="btn nav-link" data-page="plans">
+                        <i class="fas fa-arrow-up"></i> VIEW PLANS
+                    </a>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Subscription Plans Page -->
+        <section id="plans" class="page">
+            <div class="plans-container">
+                <h2 class="neon-text">SUBSCRIPTION PLANS</h2>
+                <p style="text-align: center; color: #a0d2ff; margin-bottom: 40px; font-size: 18px;">Choose the perfect plan for your proxy generation needs</p>
+                
+                <div class="plans-grid">
+                    <!-- Free Plan -->
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <div class="plan-name">FREE PLAN</div>
+                            <div class="plan-price">$0</div>
+                            <div class="plan-period">PER MONTH</div>
+                        </div>
+                        
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 100 proxies per day</li>
+                            <li><i class="fas fa-check"></i> Basic proxy types</li>
+                            <li><i class="fas fa-check"></i> 3 countries available</li>
+                            <li><i class="fas fa-check"></i> Basic support</li>
+                            <li><i class="fas fa-check"></i> Account dashboard</li>
+                        </ul>
+                        
+                        <button class="btn btn-secondary" onclick="showUpgradeModal()">
+                            <i class="fas fa-user"></i> CURRENT PLAN
+                        </button>
+                    </div>
+                    
+                    <!-- Basic Plan -->
+                    <div class="plan-card popular">
+                        <div class="plan-header">
+                            <div class="plan-name">BASIC PLAN</div>
+                            <div class="plan-price">$9.99</div>
+                            <div class="plan-period">PER MONTH</div>
+                        </div>
+                        
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 500 proxies per day</li>
+                            <li><i class="fas fa-check"></i> All proxy types</li>
+                            <li><i class="fas fa-check"></i> 15 countries available</li>
+                            <li><i class="fas fa-check"></i> Priority support</li>
+                            <li><i class="fas fa-check"></i> Faster generation</li>
+                        </ul>
+                        
+                        <button class="btn" onclick="showUpgradeModal()">
+                            <i class="fas fa-arrow-up"></i> UPGRADE TO BASIC
+                        </button>
+                    </div>
+                    
+                    <!-- Business Plan -->
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <div class="plan-name">BUSINESS PLAN</div>
+                            <div class="plan-price">$29.99</div>
+                            <div class="plan-period">PER MONTH</div>
+                        </div>
+                        
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> 1000 proxies per day</li>
+                            <li><i class="fas fa-check"></i> Elite proxy types</li>
+                            <li><i class="fas fa-check"></i> 35 countries available</li>
+                            <li><i class="fas fa-check"></i> 24/7 priority support</li>
+                            <li><i class="fas fa-check"></i> API access</li>
+                        </ul>
+                        
+                        <button class="btn" onclick="showUpgradeModal()">
+                            <i class="fas fa-briefcase"></i> UPGRADE TO BUSINESS
+                        </button>
+                    </div>
+                    
+                    <!-- Enterprise Plan -->
+                    <div class="plan-card">
+                        <div class="plan-header">
+                            <div class="plan-name">ENTERPRISE PLAN</div>
+                            <div class="plan-price">$79.99</div>
+                            <div class="plan-period">PER MONTH</div>
+                        </div>
+                        
+                        <ul class="plan-features">
+                            <li><i class="fas fa-check"></i> Unlimited proxies</li>
+                            <li><i class="fas fa-check"></i> All proxy types + Elite</li>
+                            <li><i class="fas fa-check"></i> 68 countries available</li>
+                            <li><i class="fas fa-check"></i> Dedicated support</li>
+                            <li><i class="fas fa-check"></i> Custom solutions</li>
+                        </ul>
+                        
+                        <button class="btn" onclick="showUpgradeModal()">
+                            <i class="fas fa-building"></i> UPGRADE TO ENTERPRISE
+                        </button>
+                    </div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 40px;">
+                    <p style="color: #a0d2ff; margin-bottom: 20px;">All plans include our premium proxy network and security features</p>
+                    <button class="btn btn-secondary" onclick="showUpgradeModal()">
+                        <i class="fas fa-question-circle"></i> NEED HELP CHOOSING?
                     </button>
                 </div>
             </div>
@@ -1396,7 +1637,7 @@
                             <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 15px; margin-top: 20px;">
                                 <div>
                                     <div style="color: #00a2ff; font-size: 12px;">CLEARANCE LEVEL</div>
-                                    <div id="profile-plan" style="color: #00ffff; font-size: 18px; font-family: 'Orbitron', sans-serif;">BASIC</div>
+                                    <div id="profile-plan" style="color: #00ffff; font-size: 18px; font-family: 'Orbitron', sans-serif;">FREE</div>
                                 </div>
                                 <div>
                                     <div style="color: #00a2ff; font-size: 12px;">OPERATIVE ID</div>
@@ -1407,21 +1648,34 @@
                                     <div id="member-since" style="color: #a0d2ff; font-size: 14px;">2023-01-01</div>
                                 </div>
                                 <div>
-                                    <div style="color: #00a2ff; font-size: 12px;">MISSION TIME</div>
-                                    <div id="account-age" style="color: #a0d2ff; font-size: 14px;">0 DAYS</div>
+                                    <div style="color: #00a2ff; font-size: 12px;">ACCOUNT LEVEL</div>
+                                    <div id="account-age" style="color: #a0d2ff; font-size: 14px;">1</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     
+                    <!-- Subscription Days Counter -->
                     <div class="control-group">
-                        <label><i class="fas fa-crown"></i> CURRENT PLAN LIMITS</label>
+                        <label><i class="fas fa-crown"></i> SUBSCRIPTION STATUS</label>
+                        <div class="subscription-days">
+                            <div class="days-count" id="subscription-days-count">0</div>
+                            <div class="days-label">DAYS ON CURRENT PLAN</div>
+                            <div style="margin-top: 10px; font-size: 14px; color: #a0d2ff;">
+                                Plan: <span id="current-plan-name" style="color: #00ffff;">Free</span> | 
+                                Renewal: <span id="plan-renewal" style="color: #00ffff;">Manual</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="control-group">
+                        <label><i class="fas fa-chart-line"></i> PLAN USAGE STATISTICS</label>
                         <div class="plan-limits" id="current-plan-limits">
                             <!-- Plan limits will be dynamically populated -->
                         </div>
-                        <button class="btn" id="upgradePlanBtn" style="margin-top: 20px;">
-                            <i class="fas fa-arrow-up"></i> UPGRADE CLEARANCE LEVEL
-                        </button>
+                        <a href="#" class="btn nav-link" data-page="plans" style="margin-top: 20px;">
+                            <i class="fas fa-arrow-up"></i> VIEW ALL PLANS
+                        </a>
                     </div>
                 </div>
                 
@@ -1535,6 +1789,8 @@
                         name: fullUserData.name || fullUserData.username,
                         email: fullUserData.email || fullUserData.username,
                         plan: fullUserData.plan || 'free',
+                        subscriptionStart: fullUserData.subscriptionStart || fullUserData.createdAt,
+                        subscriptionEnd: fullUserData.subscriptionEnd || null,
                         joinedDate: fullUserData.createdAt,
                         stats: {
                             proxiesGeneratedToday: fullUserData.proxiesGeneratedToday || 0,
@@ -1573,6 +1829,7 @@
                             password: password,
                             name: name,
                             plan: 'free',
+                            subscriptionStart: new Date().toISOString(),
                             proxiesGeneratedToday: 0,
                             totalProxiesGenerated: 0,
                             accountLevel: 1,
@@ -1593,6 +1850,8 @@
                         name: name,
                         email: email,
                         plan: 'free',
+                        subscriptionStart: userData.createdAt,
+                        subscriptionEnd: null,
                         joinedDate: userData.createdAt,
                         stats: {
                             proxiesGeneratedToday: 0,
@@ -1673,25 +1932,57 @@
                 return await this.updateUser(updatedData);
             }
             
+            getPlanInfo(plan) {
+                const plans = {
+                    free: { 
+                        daily: 100, 
+                        name: 'FREE PLAN',
+                        price: '$0/month',
+                        features: ['100 proxies/day', 'Basic types', '3 countries', 'Basic support']
+                    },
+                    basic: { 
+                        daily: 500, 
+                        name: 'BASIC PLAN',
+                        price: '$9.99/month',
+                        features: ['500 proxies/day', 'All types', '15 countries', 'Priority support']
+                    },
+                    business: { 
+                        daily: 1000, 
+                        name: 'BUSINESS PLAN',
+                        price: '$29.99/month',
+                        features: ['1000 proxies/day', 'Elite types', '35 countries', '24/7 support', 'API access']
+                    },
+                    enterprise: { 
+                        daily: 9999, 
+                        name: 'ENTERPRISE PLAN',
+                        price: '$79.99/month',
+                        features: ['Unlimited proxies', 'All types + Elite', '68 countries', 'Dedicated support', 'Custom solutions']
+                    }
+                };
+                return plans[plan] || plans.free;
+            }
+            
+            getSubscriptionDays() {
+                if (!this.currentUser.subscriptionStart) {
+                    return 0;
+                }
+                
+                const startDate = new Date(this.currentUser.subscriptionStart);
+                const today = new Date();
+                const diffTime = Math.abs(today - startDate);
+                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                return diffDays;
+            }
+            
             logout() {
                 this.currentUser = null;
                 localStorage.removeItem('cyrox_user_session');
                 this.showLoginPage();
             }
             
-            getPlanLimits(plan) {
-                const limits = {
-                    free: { daily: 100, name: 'FREE CLEARANCE', features: ['Basic proxy access', '100 proxies/day'] },
-                    basic: { daily: 500, name: 'BASIC CLEARANCE', features: ['500 proxies/day', 'Faster generation'] },
-                    business: { daily: 1000, name: 'BUSINESS CLEARANCE', features: ['1000 proxies/day', 'Priority support'] },
-                    enterprise: { daily: 9999, name: 'ENTERPRISE CLEARANCE', features: ['Unlimited proxies', 'Dedicated support'] }
-                };
-                return limits[plan] || limits.free;
-            }
-            
             canGenerateProxies(count) {
-                const limits = this.getPlanLimits(this.currentUser.plan);
-                return this.currentUser.stats.proxiesGeneratedToday + parseInt(count) <= limits.daily;
+                const planInfo = this.getPlanInfo(this.currentUser.plan);
+                return this.currentUser.stats.proxiesGeneratedToday + parseInt(count) <= planInfo.daily;
             }
             
             updateUIForLoggedInUser() {
@@ -1701,6 +1992,7 @@
                     <li><a href="#" class="nav-link" data-page="home"><i class="fas fa-home"></i> HOME</a></li>
                     <li><a href="#" class="nav-link" data-page="dashboard"><i class="fas fa-tachometer-alt"></i> DASHBOARD</a></li>
                     <li><a href="#" class="nav-link" data-page="generator"><i class="fas fa-bolt"></i> GENERATOR</a></li>
+                    <li><a href="#" class="nav-link" data-page="plans"><i class="fas fa-crown"></i> PLANS</a></li>
                     <li><a href="#" class="nav-link" data-page="profile"><i class="fas fa-user-secret"></i> PROFILE</a></li>
                     <li>
                         <div class="user-info">
@@ -1714,17 +2006,20 @@
                 `;
                 
                 // Update dashboard info
-                const limits = this.getPlanLimits(this.currentUser.plan);
+                const planInfo = this.getPlanInfo(this.currentUser.plan);
                 document.getElementById('dashboard-username').textContent = this.currentUser.name.split(' ')[0];
-                document.getElementById('user-plan').textContent = limits.name;
-                document.getElementById('daily-limit').textContent = limits.daily;
+                document.getElementById('user-plan').textContent = planInfo.name;
+                document.getElementById('daily-limit').textContent = planInfo.daily;
+                document.getElementById('subscription-days').textContent = this.getSubscriptionDays();
                 
                 // Update profile info
                 document.getElementById('profile-name').textContent = this.currentUser.name;
                 document.getElementById('profile-email').textContent = this.currentUser.email;
                 document.getElementById('profile-avatar').textContent = this.currentUser.name.charAt(0).toUpperCase();
                 document.getElementById('profile-email-input').value = this.currentUser.email;
-                document.getElementById('profile-plan').textContent = limits.name;
+                document.getElementById('profile-plan').textContent = planInfo.name;
+                document.getElementById('current-plan-name').textContent = planInfo.name;
+                document.getElementById('subscription-days-count').textContent = this.getSubscriptionDays();
                 
                 // Set profile name fields
                 const nameParts = this.currentUser.name.split(' ');
@@ -1762,21 +2057,16 @@
             
             updatePlanLimitsDisplay() {
                 const limitsContainer = document.getElementById('current-plan-limits');
-                const allPlans = ['free', 'basic', 'business', 'enterprise'];
+                const planInfo = this.getPlanInfo(this.currentUser.plan);
                 
-                limitsContainer.innerHTML = allPlans.map(plan => {
-                    const limits = this.getPlanLimits(plan);
-                    const isCurrent = plan === this.currentUser.plan;
-                    
-                    return `
-                        <div class="limit-card ${isCurrent ? 'current' : ''}">
-                            <div class="limit-plan">${limits.name}</div>
-                            <div class="limit-daily">${limits.daily === 9999 ? 'Unlimited' : limits.daily + '/day'}</div>
-                            <div class="limit-label">${limits.features[0]}</div>
-                            ${isCurrent ? '<div style="color: #00ff00; font-size: 12px; margin-top: 5px;">CURRENT PLAN</div>' : ''}
-                        </div>
-                    `;
-                }).join('');
+                limitsContainer.innerHTML = `
+                    <div class="limit-card current">
+                        <div class="limit-plan">${planInfo.name}</div>
+                        <div class="limit-daily">${planInfo.daily === 9999 ? 'Unlimited' : planInfo.daily + '/day'}</div>
+                        <div class="limit-label">${planInfo.price}</div>
+                        <div style="margin-top: 10px; font-size: 12px; color: #00ffff;">CURRENT PLAN</div>
+                    </div>
+                `;
             }
             
             showLoginPage() {
@@ -1963,14 +2253,10 @@
                 }
             });
 
-            // Upgrade plan buttons
-            document.getElementById('showUpgradeModal').addEventListener('click', function() {
+            // Upgrade modal functions
+            window.showUpgradeModal = function() {
                 document.getElementById('upgradeModal').classList.add('active');
-            });
-
-            document.getElementById('upgradePlanBtn').addEventListener('click', function() {
-                document.getElementById('upgradeModal').classList.add('active');
-            });
+            };
 
             // Close upgrade modal
             document.getElementById('closeUpgrade').addEventListener('click', function() {
@@ -2012,8 +2298,8 @@
                 
                 // Check daily limit
                 if (!authSystem.canGenerateProxies(proxyCount)) {
-                    const limits = authSystem.getPlanLimits(authSystem.currentUser.plan);
-                    alert(`DAILY ALLOCATION EXCEEDED: ${limits.daily} PROXIES MAXIMUM. UPGRADE CLEARANCE FOR HIGHER LIMITS.`);
+                    const planInfo = authSystem.getPlanInfo(authSystem.currentUser.plan);
+                    alert(`DAILY ALLOCATION EXCEEDED: ${planInfo.daily} PROXIES MAXIMUM. UPGRADE TO ${planInfo.name === 'FREE PLAN' ? 'BASIC' : 'HIGHER'} PLAN FOR MORE PROXIES.`);
                     return;
                 }
                 
@@ -2224,6 +2510,8 @@
                             email: email,
                             password: password,
                             plan: 'free',
+                            subscriptionStart: new Date().toISOString(),
+                            subscriptionEnd: null,
                             joinedDate: new Date().toISOString(),
                             stats: {
                                 proxiesGeneratedToday: 0,
@@ -2269,7 +2557,8 @@
                         return this.updateUser(this.currentUser);
                     },
                     
-                    getPlanLimits: authSystem.getPlanLimits,
+                    getPlanInfo: authSystem.getPlanInfo,
+                    getSubscriptionDays: authSystem.getSubscriptionDays,
                     canGenerateProxies: authSystem.canGenerateProxies,
                     logout: authSystem.logout,
                     showLoginPage: authSystem.showLoginPage,
@@ -2281,6 +2570,8 @@
                 authSystem.register = window.authSystem.register.bind(window.authSystem);
                 authSystem.updateUser = window.authSystem.updateUser.bind(window.authSystem);
                 authSystem.incrementProxyCount = window.authSystem.incrementProxyCount.bind(window.authSystem);
+                authSystem.getPlanInfo = window.authSystem.getPlanInfo.bind(window.authSystem);
+                authSystem.getSubscriptionDays = window.authSystem.getSubscriptionDays.bind(window.authSystem);
                 
                 // Check for existing session
                 const savedUser = localStorage.getItem('cyrox_current_user');
