@@ -6,7 +6,7 @@
     <link rel="apple-touch-icon" href="favicon.png">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cyrox Proxies - Premium Proxy Generator</title>
+    <title>Cyrox Proxies</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&family=Orbitron:wght@500;700;800&display=swap" rel="stylesheet">
     <style>
@@ -25,53 +25,227 @@
             position: relative;
         }
 
-        /* Cyberpunk Background Effects */
-        .cyber-bg {
+        /* Кастомный скроллбар в стиле киберпанк */
+        ::-webkit-scrollbar {
+            width: 12px;
+            background: rgba(0, 20, 40, 0.8);
+        }
+        
+        ::-webkit-scrollbar-track {
+            background: rgba(0, 20, 40, 0.4);
+            border-radius: 10px;
+        }
+        
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(45deg, #00a2ff, #0066ff, #00f7ff);
+            border-radius: 10px;
+            border: 2px solid rgba(0, 20, 40, 0.8);
+            box-shadow: 0 0 10px rgba(0, 150, 255, 0.5);
+        }
+        
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(45deg, #00f7ff, #00a2ff, #0066ff);
+            box-shadow: 0 0 15px rgba(0, 255, 255, 0.7);
+        }
+
+        /* Синий фон с частицами */
+        .particles-bg {
             position: fixed;
             width: 100%;
             height: 100%;
+            background: linear-gradient(135deg, #001233 0%, #000814 50%, #001233 100%);
             z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background: rgba(0, 150, 255, 0.6);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 200, 255, 0.8);
+            z-index: 2;
+        }
+
+        /* Анимированный градиент для кнопок */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: linear-gradient(90deg, #0066ff, #00a2ff, #0066ff);
+            background-size: 200% 100%;
+            color: white;
+            padding: 18px 40px;
+            border-radius: 12px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 1px;
+            box-shadow: 
+                0 5px 20px rgba(0, 150, 255, 0.4),
+                0 0 30px rgba(0, 150, 255, 0.2);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+            font-family: 'Orbitron', sans-serif;
+            animation: gradient-shift 3s infinite linear;
+        }
+
+        @keyframes gradient-shift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 200% 50%; }
+        }
+
+        .btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                0 10px 25px rgba(0, 150, 255, 0.6),
+                0 0 40px rgba(0, 150, 255, 0.3);
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn-large {
+            font-size: 20px;
+            padding: 20px 50px;
+            border-radius: 15px;
+        }
+
+        /* Неоновые градиентные обводки для карточек */
+        .stat-card, .plan-card, .auth-box, .generator-container, .profile-container, .plans-container, .dashboard-header {
+            position: relative;
+            border: 1px solid transparent;
+            background: linear-gradient(rgba(0, 20, 40, 0.9), rgba(0, 20, 40, 0.9)) padding-box,
+                        linear-gradient(45deg, #00a2ff, #0066ff, #00f7ff) border-box;
+            border-radius: 20px;
+        }
+
+        .stat-card:hover, .plan-card:hover {
+            box-shadow: 
+                0 0 30px rgba(0, 255, 255, 0.7),
+                0 0 60px rgba(0, 150, 255, 0.4);
+            transform: perspective(1000px) rotateY(5deg) rotateX(5deg) translateY(-10px);
+            transition: all 0.4s ease;
+        }
+
+        /* 3D преобразования */
+        .plan-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        /* Анимированный лоадер */
+        .pulse-loader {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #00ffff;
+            box-shadow: 0 0 20px #00ffff;
+            animation: pulse 1.5s infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50% { transform: scale(1.2); opacity: 0.7; }
+        }
+
+        /* Голографические эффекты для аватарок */
+        .user-avatar {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .user-avatar::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.3), transparent);
+            transform: rotate(45deg);
+            animation: hologram 3s infinite linear;
+        }
+
+        @keyframes hologram {
+            0% { transform: rotate(45deg) translateX(-100%); }
+            100% { transform: rotate(45deg) translateX(100%); }
+        }
+
+        /* Микро-анимации для иконок */
+        .fa-bolt {
+            animation: blink 2s infinite;
+            display: inline-block;
+        }
+
+        .fa-shield-alt, .fa-database, .fa-crown, .fa-terminal, .fa-user-secret {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.3; transform: scale(1.1); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-5px); }
+        }
+
+        /* Эффект глитч для текста при ошибках */
+        .glitch-text {
+            position: relative;
+            display: inline-block;
+        }
+
+        .glitch-text::before,
+        .glitch-text::after {
+            content: attr(data-text);
+            position: absolute;
             top: 0;
             left: 0;
-            background: 
-                radial-gradient(circle at 20% 50%, rgba(0, 100, 255, 0.15) 0%, transparent 50%),
-                radial-gradient(circle at 80% 20%, rgba(0, 200, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 80%, rgba(100, 0, 255, 0.1) 0%, transparent 50%),
-                linear-gradient(45deg, #000814 0%, #001233 50%, #000814 100%);
-        }
-
-        .grid-overlay {
-            position: fixed;
             width: 100%;
             height: 100%;
-            background-image: 
-                linear-gradient(rgba(0, 100, 255, 0.1) 1px, transparent 1px),
-                linear-gradient(90deg, rgba(0, 100, 255, 0.1) 1px, transparent 1px);
-            background-size: 50px 50px;
-            z-index: 2;
-            opacity: 0.3;
-            pointer-events: none;
+            opacity: 0.8;
         }
 
-        .scanline {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(
-                to bottom,
-                transparent 50%,
-                rgba(0, 255, 255, 0.03) 51%,
-                transparent 52%
-            );
-            background-size: 100% 4px;
-            z-index: 3;
-            animation: scanline 10s linear infinite;
-            pointer-events: none;
+        .glitch-text::before {
+            color: #ff00ff;
+            z-index: -1;
+            animation: glitch 0.5s infinite;
         }
 
-        @keyframes scanline {
-            0% { transform: translateY(0); }
-            100% { transform: translateY(100vh); }
+        .glitch-text::after {
+            color: #00ffff;
+            z-index: -2;
+            animation: glitch 0.5s infinite reverse;
+        }
+
+        @keyframes glitch {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
         }
 
         .container {
@@ -107,6 +281,12 @@
             align-items: center;
             gap: 15px;
             position: relative;
+            animation: logoGlow 2s infinite alternate;
+        }
+
+        @keyframes logoGlow {
+            0% { text-shadow: 0 0 30px rgba(0, 150, 255, 0.7); }
+            100% { text-shadow: 0 0 50px rgba(0, 200, 255, 1), 0 0 70px rgba(0, 150, 255, 0.9); }
         }
 
         .logo::after {
@@ -118,11 +298,6 @@
             height: 2px;
             background: linear-gradient(90deg, transparent, #00a2ff, transparent);
             animation: pulse 2s infinite;
-        }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 0.5; }
-            50% { opacity: 1; }
         }
 
         .logo-icon {
@@ -139,6 +314,12 @@
             height: 100%;
             object-fit: contain;
             filter: drop-shadow(0 0 15px rgba(0, 150, 255, 0.7));
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
         }
 
         nav ul {
@@ -263,7 +444,7 @@
         }
 
         .auth-box {
-            background: rgba(0, 20, 40, 0.9);
+            background: rgba(0, 20, 40, 0.95);
             border-radius: 20px;
             padding: 40px;
             width: 100%;
@@ -271,7 +452,7 @@
             box-shadow: 
                 0 0 50px rgba(0, 150, 255, 0.3),
                 inset 0 0 20px rgba(0, 150, 255, 0.1);
-            border: 1px solid rgba(0, 150, 255, 0.3);
+            border: 2px solid transparent;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
@@ -286,6 +467,11 @@
             height: 100%;
             background: linear-gradient(45deg, transparent 30%, rgba(0, 150, 255, 0.1) 50%, transparent 70%);
             animation: shine 8s infinite linear;
+        }
+
+        @keyframes shine {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
         }
 
         .auth-header {
@@ -381,62 +567,6 @@
             color: #6688aa;
         }
 
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            background: linear-gradient(45deg, #0066ff, #00a2ff);
-            color: white;
-            padding: 18px 40px;
-            border-radius: 12px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 18px;
-            letter-spacing: 1px;
-            box-shadow: 
-                0 5px 20px rgba(0, 150, 255, 0.4),
-                0 0 30px rgba(0, 150, 255, 0.2);
-            transition: all 0.3s ease;
-            position: relative;
-            overflow: hidden;
-            z-index: 1;
-            border: none;
-            cursor: pointer;
-            width: 100%;
-            margin-top: 10px;
-            font-family: 'Orbitron', sans-serif;
-        }
-
-        .btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 
-                0 10px 25px rgba(0, 150, 255, 0.6),
-                0 0 40px rgba(0, 150, 255, 0.3);
-            background: linear-gradient(45deg, #00a2ff, #0066ff);
-        }
-
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s ease;
-        }
-
-        .btn:hover::before {
-            left: 100%;
-        }
-
-        .btn-large {
-            font-size: 20px;
-            padding: 20px 50px;
-            border-radius: 15px;
-        }
-
         /* Error Message Styling */
         .error-message {
             display: none;
@@ -496,14 +626,14 @@
 
         /* Dashboard Page */
         .dashboard-header {
-            background: rgba(0, 20, 40, 0.9);
+            background: rgba(0, 20, 40, 0.95);
             border-radius: 20px;
             padding: 30px;
             margin-bottom: 40px;
             box-shadow: 
                 0 10px 30px rgba(0, 150, 255, 0.2),
                 inset 0 0 20px rgba(0, 150, 255, 0.1);
-            border: 1px solid rgba(0, 150, 255, 0.3);
+            border: 2px solid transparent;
             display: flex;
             justify-content: space-between;
             align-items: center;
@@ -552,14 +682,14 @@
         }
 
         .stat-card {
-            background: rgba(0, 20, 40, 0.9);
+            background: rgba(0, 20, 40, 0.95);
             border-radius: 15px;
             padding: 25px;
             box-shadow: 
                 0 8px 25px rgba(0, 150, 255, 0.2),
                 inset 0 0 15px rgba(0, 150, 255, 0.1);
-            border: 1px solid rgba(0, 150, 255, 0.2);
-            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
             backdrop-filter: blur(10px);
@@ -570,7 +700,6 @@
             box-shadow: 
                 0 12px 30px rgba(0, 150, 255, 0.3),
                 0 0 25px rgba(0, 150, 255, 0.2);
-            border-color: rgba(0, 200, 255, 0.4);
         }
 
         .stat-card h3 {
@@ -598,13 +727,13 @@
 
         /* Subscription Plans Page */
         .plans-container {
-            background: rgba(0, 20, 40, 0.9);
+            background: rgba(0, 20, 40, 0.95);
             border-radius: 20px;
             padding: 40px;
             box-shadow: 
                 0 10px 40px rgba(0, 150, 255, 0.25),
                 inset 0 0 20px rgba(0, 150, 255, 0.1);
-            border: 1px solid rgba(0, 150, 255, 0.3);
+            border: 2px solid transparent;
             margin-bottom: 50px;
             backdrop-filter: blur(10px);
         }
@@ -626,19 +755,14 @@
         }
 
         .plan-card {
-            background: rgba(0, 20, 40, 0.8);
+            background: rgba(0, 20, 40, 0.9);
             border-radius: 15px;
             padding: 30px;
-            border: 1px solid rgba(0, 150, 255, 0.2);
-            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            transition: all 0.4s ease;
             position: relative;
             overflow: hidden;
-        }
-
-        .plan-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 35px rgba(0, 150, 255, 0.3);
-            border-color: rgba(0, 200, 255, 0.4);
+            backdrop-filter: blur(5px);
         }
 
         .plan-card.popular {
@@ -716,11 +840,11 @@
             position: relative;
             overflow: hidden;
             border-radius: 20px;
-            background: rgba(0, 20, 40, 0.9);
+            background: rgba(0, 20, 40, 0.95);
             box-shadow: 
                 0 10px 40px rgba(0, 150, 255, 0.25),
                 inset 0 0 30px rgba(0, 150, 255, 0.1);
-            border: 1px solid rgba(0, 150, 255, 0.3);
+            border: 2px solid transparent;
             backdrop-filter: blur(10px);
         }
 
@@ -772,17 +896,22 @@
             border: 1px solid rgba(0, 150, 255, 0.3);
             box-shadow: 0 5px 15px rgba(0, 150, 255, 0.2);
             backdrop-filter: blur(5px);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-5px);
         }
 
         /* Proxy Generator */
         .generator-container {
-            background: rgba(0, 20, 40, 0.9);
+            background: rgba(0, 20, 40, 0.95);
             border-radius: 20px;
             padding: 40px;
             box-shadow: 
                 0 10px 40px rgba(0, 150, 255, 0.25),
                 inset 0 0 20px rgba(0, 150, 255, 0.1);
-            border: 1px solid rgba(0, 150, 255, 0.3);
+            border: 2px solid transparent;
             margin-bottom: 50px;
             backdrop-filter: blur(10px);
         }
@@ -852,11 +981,11 @@
 
         /* Results */
         .results {
-            background: rgba(0, 10, 30, 0.95);
+            background: rgba(0, 10, 30, 0.98);
             border-radius: 15px;
             padding: 30px;
             margin-top: 40px;
-            border: 1px solid rgba(0, 150, 255, 0.4);
+            border: 2px solid transparent;
             display: none;
             box-shadow: 
                 0 5px 20px rgba(0, 150, 255, 0.2),
@@ -934,13 +1063,13 @@
 
         /* Profile Page */
         .profile-container {
-            background: rgba(0, 20, 40, 0.9);
+            background: rgba(0, 20, 40, 0.95);
             border-radius: 20px;
             padding: 40px;
             box-shadow: 
                 0 10px 40px rgba(0, 150, 255, 0.25),
                 inset 0 0 20px rgba(0, 150, 255, 0.1);
-            border: 1px solid rgba(0, 150, 255, 0.3);
+            border: 2px solid transparent;
             margin-bottom: 40px;
             backdrop-filter: blur(10px);
         }
@@ -964,7 +1093,7 @@
         }
 
         .upgrade-content {
-            background: rgba(0, 20, 40, 0.95);
+            background: rgba(0, 20, 40, 0.98);
             border-radius: 20px;
             padding: 40px;
             max-width: 500px;
@@ -972,7 +1101,7 @@
             box-shadow: 
                 0 0 60px rgba(0, 200, 255, 0.4),
                 inset 0 0 30px rgba(0, 150, 255, 0.2);
-            border: 2px solid rgba(0, 200, 255, 0.5);
+            border: 2px solid transparent;
             text-align: center;
             backdrop-filter: blur(20px);
         }
@@ -1036,6 +1165,12 @@
             padding: 20px;
             border: 1px solid rgba(0, 150, 255, 0.3);
             text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .limit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 150, 255, 0.3);
         }
 
         .limit-card.current {
@@ -1070,6 +1205,12 @@
             margin: 20px 0;
             border: 1px solid rgba(0, 150, 255, 0.3);
             text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .subscription-days:hover {
+            box-shadow: 0 0 20px rgba(0, 150, 255, 0.3);
+            transform: translateY(-3px);
         }
 
         .subscription-days .days-count {
@@ -1177,6 +1318,25 @@
             20%, 24%, 55% {       
                 text-shadow: none;
             }
+        }
+
+        /* Typing Effect */
+        .typing-effect {
+            display: inline-block;
+            overflow: hidden;
+            border-right: 3px solid #00ffff;
+            white-space: nowrap;
+            animation: typing 3.5s steps(40, end), blink-caret 0.75s step-end infinite;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #00ffff }
         }
 
         /* Responsive Design */
@@ -1291,10 +1451,8 @@
     </style>
 </head>
 <body>
-    <!-- Cyberpunk Background Effects -->
-    <div class="cyber-bg"></div>
-    <div class="grid-overlay"></div>
-    <div class="scanline"></div>
+    <!-- Particles Background -->
+    <div class="particles-bg" id="particles-bg"></div>
     
     <!-- Upgrade Plan Modal -->
     <div class="upgrade-modal" id="upgradeModal">
@@ -1339,7 +1497,6 @@
         <header>
             <div class="logo">
                 <div class="logo-icon">
-                    <!-- Ваша иконка в виде SVG -->
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
                         <defs>
                             <linearGradient id="cyrox-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
@@ -1383,7 +1540,7 @@
             <div class="auth-container">
                 <div class="auth-box">
                     <div class="auth-header">
-                        <h2 class="neon-text">ACCESS SYSTEM</h2>
+                        <h2 class="neon-text typing-effect">ACCESS SYSTEM</h2>
                         <p>Enter credentials to access Cyrox Proxies</p>
                     </div>
                     
@@ -1847,9 +2004,97 @@
 
     <!-- Back4App Database Integration Script -->
     <script>
+        // Particles System
+        class ParticlesSystem {
+            constructor() {
+                this.container = document.getElementById('particles-bg');
+                this.particles = [];
+                this.particleCount = 50;
+                this.init();
+            }
+            
+            init() {
+                for (let i = 0; i < this.particleCount; i++) {
+                    this.createParticle();
+                }
+                this.animate();
+            }
+            
+            createParticle() {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                
+                // Random size between 2px and 6px
+                const size = Math.random() * 4 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}vw`;
+                particle.style.top = `${Math.random() * 100}vh`;
+                
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.6 + 0.4;
+                
+                // Store animation properties
+                const particleData = {
+                    element: particle,
+                    x: parseFloat(particle.style.left),
+                    y: parseFloat(particle.style.top),
+                    speedX: (Math.random() - 0.5) * 0.5,
+                    speedY: (Math.random() - 0.5) * 0.5,
+                    amplitude: Math.random() * 20 + 10,
+                    frequency: Math.random() * 0.02 + 0.01,
+                    time: Math.random() * 100
+                };
+                
+                this.container.appendChild(particle);
+                this.particles.push(particleData);
+            }
+            
+            animate() {
+                const animateFrame = () => {
+                    this.particles.forEach(particle => {
+                        particle.time += 0.05;
+                        
+                        // Calculate new position with wave motion
+                        const waveX = Math.sin(particle.time * particle.frequency) * particle.amplitude;
+                        const waveY = Math.cos(particle.time * particle.frequency) * particle.amplitude;
+                        
+                        particle.x += particle.speedX;
+                        particle.y += particle.speedY;
+                        
+                        // Boundary check - wrap around
+                        if (particle.x > 100) particle.x = 0;
+                        if (particle.x < 0) particle.x = 100;
+                        if (particle.y > 100) particle.y = 0;
+                        if (particle.y < 0) particle.y = 100;
+                        
+                        // Apply wave motion
+                        const finalX = particle.x + waveX / 100;
+                        const finalY = particle.y + waveY / 100;
+                        
+                        particle.element.style.left = `${finalX}vw`;
+                        particle.element.style.top = `${finalY}vh`;
+                        
+                        // Pulsing opacity
+                        const pulse = Math.sin(particle.time * 0.5) * 0.2 + 0.8;
+                        particle.element.style.opacity = particle.element.style.opacity * pulse;
+                    });
+                    
+                    requestAnimationFrame(animateFrame);
+                };
+                
+                animateFrame();
+            }
+        }
+
+        // Initialize particles
+        const particlesSystem = new ParticlesSystem();
+
         // Back4App Configuration
-        const BACK4APP_APP_ID = '9f7GtD1HLfoZQjQpFlETJMOb9MgtKtDy6BVUjvYA'; // Replace with your Back4App App ID
-        const BACK4APP_REST_API_KEY = '37Q3snQEdUGjmbhyhaROmupukwisstKjDjRs47X7'; // Replace with your Back4App REST API Key
+        const BACK4APP_APP_ID = '9f7GtD1HLfoZQjQpFlETJMOb9MgtKtDy6BVUjvYA';
+        const BACK4APP_REST_API_KEY = '37Q3snQEdUGjmbhyhaROmupukwisstKjDjRs47X7';
         const BACK4APP_URL = 'https://parseapi.back4app.com';
         
         // User Management System with Back4App Integration
@@ -1958,6 +2203,7 @@
                 try {
                     // Hide any existing errors
                     const errorElement = document.getElementById('register-error');
+                    const errorText = document.getElementById('register-error-text');
                     errorElement.classList.remove('active');
                     
                     // Back4App signup endpoint
@@ -2209,6 +2455,9 @@
                 
                 // Show dashboard page
                 this.showPage('dashboard');
+                
+                // Animate counters
+                this.animateCounters();
             }
             
             updatePlanLimitsDisplay() {
@@ -2223,6 +2472,38 @@
                         <div style="margin-top: 10px; font-size: 12px; color: #00ffff;">CURRENT PLAN</div>
                     </div>
                 `;
+            }
+            
+            animateCounters() {
+                // Animate dashboard counters
+                const counters = [
+                    { id: 'today-proxies', target: this.currentUser.stats.proxiesGeneratedToday },
+                    { id: 'total-proxies', target: this.currentUser.stats.totalProxiesGenerated },
+                    { id: 'account-level', target: this.currentUser.stats.accountLevel },
+                    { id: 'subscription-days', target: this.getSubscriptionDays() },
+                    { id: 'subscription-days-count', target: this.getSubscriptionDays() }
+                ];
+                
+                counters.forEach(counter => {
+                    const element = document.getElementById(counter.id);
+                    if (element) {
+                        this.animateCounter(element, counter.target);
+                    }
+                });
+            }
+            
+            animateCounter(element, target) {
+                let current = 0;
+                const increment = target / 50;
+                const timer = setInterval(() => {
+                    current += increment;
+                    if (current >= target) {
+                        element.textContent = target;
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(current);
+                    }
+                }, 20);
             }
             
             showLoginPage() {
@@ -2323,7 +2604,7 @@
                 
                 const btn = this.querySelector('.btn');
                 const originalText = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> AUTHENTICATING';
+                btn.innerHTML = '<div class="pulse-loader"></div> AUTHENTICATING';
                 btn.disabled = true;
                 
                 const result = await authSystem.login(email, password);
@@ -2372,7 +2653,7 @@
                 
                 const btn = this.querySelector('.btn');
                 const originalText = btn.innerHTML;
-                btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> CREATING PROFILE';
+                btn.innerHTML = '<div class="pulse-loader"></div> CREATING PROFILE';
                 btn.disabled = true;
                 
                 const result = await authSystem.register(name, email, password);
@@ -2470,7 +2751,7 @@
                 }
                 
                 // Show loading state
-                this.innerHTML = '<i class="fas fa-spinner fa-spin"></i> GENERATING...';
+                this.innerHTML = '<div class="pulse-loader"></div> GENERATING...';
                 this.disabled = true;
                 
                 // Simulate loading
@@ -2622,10 +2903,13 @@
                         element.textContent = '0';
                         
                         let counter = 0;
-                        const increment = parseInt(finalValue.replace(/[^\d]/g, '')) / 100;
+                        const target = parseInt(finalValue.replace(/[^\d.]/g, ''));
+                        const isPercent = finalValue.includes('%');
+                        const increment = target / 100;
+                        
                         const timer = setInterval(() => {
                             counter += increment;
-                            if (counter >= parseInt(finalValue.replace(/[^\d]/g, ''))) {
+                            if (counter >= target) {
                                 element.textContent = finalValue;
                                 clearInterval(timer);
                             } else {
